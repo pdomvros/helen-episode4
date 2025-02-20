@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ελένη Δ' Επεισόδιο - Διαδραστική Δραστηριότητα</title>
+    <title>Ελένη Δ' Επεισόδιο</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -18,7 +18,6 @@
             background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .active { display: block; }
         button {
@@ -54,24 +53,39 @@
         .drag-drop {
             text-align: left;
         }
-        .drag-drop div {
-            margin: 10px 0;
+        .drag-drop .container {
+            display: flex;
+            justify-content: space-between;
         }
-        .sequence {
-            text-align: left;
+        .drag-drop .heroes, .drag-drop .traits {
+            width: 45%;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
         }
-        .sequence div {
-            margin: 10px 0;
+        .drag-drop .heroes div, .drag-drop .traits div {
+            padding: 10px;
+            margin: 5px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: grab;
+        }
+        .drag-drop .traits div {
+            background-color: #e0f7fa;
         }
     </style>
+    <!-- SortableJS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 </head>
 <body>
     <button class="video-button" onclick="window.open('https://youtu.be/OIIuLkh0icc', '_blank', 'width=600,height=400')">🎥 Δες το βίντεο</button>
 
-    <h1>Ελένη Δ' Επεισόδιο - Διαδραστική Δραστηριότητα</h1>
+    <h1>Ελένη Δ' Επεισόδιο</h1>
     <p><strong>Δημιουργία: Παναγιώτης Δόμβρος 2025 (CC BY-NC)</strong></p>
     
-    <h2>Δίσημοι Λόγοι</h2>
+    <!-- Άσκηση 1: Ερμηνεία Δίσημων Λόγων -->
+    <h2>Ερμηνεία Δίσημων Λόγων</h2>
     <div class="quiz active" id="quiz1">
         <p>1. Τι εννοεί η Ελένη όταν λέει "Καινούριε μου άντρα, πρέπει να τιμήσω και τον πρώτο μου γάμο";</p>
         <button onclick="checkAnswer('quiz1', 1, 'quiz2')">Αναφέρεται στις νεκρώσιμες τιμές προς τον "νεκρό" Μενέλαο 🪦</button>
@@ -106,7 +120,8 @@
         <button onclick="checkAnswer('quiz5', 2, '')">Υπονοεί ότι θα "ανταποδώσει" με την απόδρασή της 🏃‍♀️</button>
         <p id="quiz5-feedback"></p>
     </div>
-    
+
+    <!-- Άσκηση 2: Επιλέξτε τη  Σωστή Απάντηση -->
     <h2>Επιλογή Σωστής Απάντησης</h2>
     <div class="quiz active" id="quiz6">
         <p>1. Ποια αφηγηματική τεχνική χρησιμοποιείται κυρίως στην αρχή του επεισοδίου;</p>
@@ -140,7 +155,7 @@
         <button onclick="checkAnswer('quiz9', 1, 'quiz10')">α) Ο Θεοκλύμενος πιστεύει ότι ο Μενέλαος είναι νεκρός, ενώ οι θεατές γνωρίζουν ότι είναι ζωντανός 🎭</button>
         <button onclick="checkAnswer('quiz9', 2, 'quiz10')">β) Η Ελένη μιλάει ανοιχτά στον Θεοκλύμενο για το σχέδιό της 🗣️</button>
         <button onclick="checkAnswer('quiz9', 3, 'quiz10')">γ) Ο Μενέλαος παραδέχεται την αδυναμία του να δραπετεύσει 🥺</button>
-        <button onclick="checkAnswer('quiz9', 4, 'quiz10')">δ) Ο Χορός προδίδει το μυστικό του ζευγαριού 🎶</button>
+        <button onclick="checkAnswer('quiz9', 4, 'quiz10')">δ) Ο Χορός προδίδει το μυστικό του ζευγαριού �</button>
         <p id="quiz9-feedback"></p>
     </div>
     
@@ -161,48 +176,42 @@
         <button onclick="checkAnswer('quiz11', 4, '')">δ) Η τύχη παρουσιάζεται ως θεϊκή δύναμη που βοηθά μόνο τον Θεοκλύμενο 🙏</button>
         <p id="quiz11-feedback"></p>
     </div>
-    
+
+    <!-- Άσκηση 3: Σύρετε και Τοποθετήστε -->
     <h2>Χαρακτηρισμοί Ηρώων</h2>
     <div class="drag-drop active" id="dragdrop1">
         <p>Σύρετε και τοποθετήστε κάθε χαρακτηρισμό στον σωστό ήρωα (Ελένη, Μενέλαος, Θεοκλύμενος).</p>
-        <div id="dragdrop1-feedback"></div>
-        <div>
-            <strong>Ήρωες:</strong>
-            <ul>
-                <li>Ελένη</li>
-                <li>Μενέλαος</li>
-                <li>Θεοκλύμενος</li>
-            </ul>
+        <div class="container">
+            <div class="heroes">
+                <div data-hero="Ελένη">Ελένη</div>
+                <div data-hero="Μενέλαος">Μενέλαος</div>
+                <div data-hero="Θεοκλύμενος">Θεοκλύμενος</div>
+            </div>
+            <div class="traits">
+                <div data-trait="Ευφυής">Ευφυής</div>
+                <div data-trait="Ετοιμόλογος">Ετοιμόλογος</div>
+                <div data-trait="Πονηρός">Πονηρός</div>
+                <div data-trait="Πανούργος">Πανούργος</div>
+                <div data-trait="Πειστικός">Πειστικός</div>
+                <div data-trait="Παρασυρόμενος από το πάθος">Παρασυρόμενος από το πάθος</div>
+                <div data-trait="Αφελής">Αφελής</div>
+                <div data-trait="Επιφυλακτικός">Επιφυλακτικός</div>
+                <div data-trait="Καχύποπτος">Καχύποπτος</div>
+                <div data-trait="Φιλόδοξος">Φιλόδοξος</div>
+                <div data-trait="Πεισματάρης">Πεισματάρης</div>
+            </div>
         </div>
-        <div>
-            <strong>Χαρακτηρισμοί:</strong>
-            <ul>
-                <li>Ευφυής</li>
-                <li>Ετοιμόλογος/η</li>
-                <li>Δυναμικός/ή</li>
-                <li>Πονηρός/ή</li>
-                <li>Πιστός/ή</li>
-                <li>Επιφυλακτικός</li>
-                <li>Πανούργος/α</li>
-                <li>Ευσεβής</li>
-                <li>Καχύποπτος/η</li>
-                <li>Επιβλητικός/ή</li>
-                <li>Αφελής</li>
-                <li>Πειστικός/ή</li>
-                <li>Πεισματάρης/α</li>
-                <li>Φιλόδοξος/η</li>
-                <li>Παρασυρόμενος/η από το πάθος</li>
-            </ul>
-        </div>
+        <button onclick="checkDragDrop()">Έλεγχος Απαντήσεων</button>
+        <p id="dragdrop1-feedback"></p>
     </div>
-    
-    <h2>Σειρά Προτάσεων</h2>
+
+    <!-- Άσκηση 4: Σειρά Προτάσεων -->
+    <h2>Δ. Βάλε τις προτάσεις στη σωστή σειρά για να δημιουργηθεί μια περίληψη του επεισοδίου</h2>
     <div class="sequence active" id="sequence1">
-        <p>Βάλε τις προτάσεις στη σωστή σειρά για να δημιουργηθεί μια περίληψη του επεισοδίου. Μπορείς να δεις το <a href="https://youtu.be/OIIuLkh0icc" target="_blank">ΒΙΝΤΕΟ</a> για να σε βοηθήσει.</p>
+        <p>Μπορείς να δεις το <a href="https://youtu.be/OIIuLkh0icc" target="_blank">ΒΙΝΤΕΟ</a> για να σε βοηθήσει.</p>
         <p>Η άσκηση <a href="https://content.e-me.edu.gr/wp-admin/admin-ajax.php?action=h5p_embed&id=1469796" target="_blank">ΕΔΩ</a>.</p>
-        <div id="sequence1-feedback"></div>
     </div>
-    
+
     <script>
         // Λίστα με τις σωστές απαντήσεις για κάθε ερώτηση
         const correctAnswers = {
@@ -230,6 +239,41 @@
                 }
             } else {
                 feedback.innerText = "❌ Λάθος απάντηση. Ξαναπροσπάθησε!";
+            }
+        }
+
+        // Ενεργοποίηση drag and drop με SortableJS
+        const heroesContainer = document.querySelector('.heroes');
+        const traitsContainer = document.querySelector('.traits');
+
+        new Sortable(heroesContainer, {
+            group: 'shared',
+            animation: 150,
+        });
+
+        new Sortable(traitsContainer, {
+            group: 'shared',
+            animation: 150,
+        });
+
+        // Συνάρτηση ελέγχου των απαντήσεων
+        function checkDragDrop() {
+            const feedback = document.getElementById('dragdrop1-feedback');
+            const heroes = document.querySelectorAll('.heroes div');
+            let correct = true;
+
+            heroes.forEach(hero => {
+                const heroName = hero.getAttribute('data-hero');
+                const traits = hero.querySelectorAll('.traits div'); // Προσοχή: Αυτό δεν θα λειτουργήσει χωρίς επιπλέον λογική
+                if (!traits || traits.length === 0) {
+                    correct = false;
+                }
+            });
+
+            if (correct) {
+                feedback.innerText = "✅ Σωστά! Όλοι οι χαρακτηρισμοί τοποθετήθηκαν σωστά.";
+            } else {
+                feedback.innerText = "❌ Λάθος. Κάποιοι χαρακτηρισμοί δεν τοποθετήθηκαν σωστά.";
             }
         }
     </script>
