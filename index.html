@@ -1,1 +1,237 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ελένη Δ' Επεισόδιο - Διαδραστική Δραστηριότητα</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-image: url('background.png');
+            background-size: cover;
+            color: #333;
+        }
+        .quiz, .drag-drop, .sequence {
+            margin-top: 20px;
+            display: none;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .active { display: block; }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .video-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #e74c3c;
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .video-button:hover {
+            background-color: #c0392b;
+        }
+        .drag-drop {
+            text-align: left;
+        }
+        .drag-drop div {
+            margin: 10px 0;
+        }
+        .sequence {
+            text-align: left;
+        }
+        .sequence div {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <button class="video-button" onclick="window.open('https://youtu.be/OIIuLkh0icc', '_blank', 'width=600,height=400')">🎥 Δες το βίντεο</button>
 
+    <h1>Ελένη Δ' Επεισόδιο - Διαδραστική Δραστηριότητα</h1>
+    <p><strong>Δημιουργία: Παναγιώτης Δόμβρος 2025 (CC BY-NC)</strong></p>
+    
+    <h2>Δίσημοι Λόγοι</h2>
+    <div class="quiz active" id="quiz1">
+        <p>1. Τι εννοεί η Ελένη όταν λέει "Καινούριε μου άντρα, πρέπει να τιμήσω και τον πρώτο μου γάμο";</p>
+        <button onclick="checkAnswer('quiz1', 1, 'quiz2')">Αναφέρεται στις νεκρώσιμες τιμές προς τον "νεκρό" Μενέλαο 🪦</button>
+        <button onclick="checkAnswer('quiz1', 2, 'quiz2')">Υπονοεί την αφοσίωσή της στον ζωντανό Μενέλαο και την επικείμενη απόδρασή τους 🧔</button>
+        <p id="quiz1-feedback"></p>
+    </div>
+    
+    <div class="quiz" id="quiz2">
+        <p>2. Τι εννοεί η Ελένη όταν λέει "Εκείνα που θα 'θελα... χαρίσουν";</p>
+        <button onclick="checkAnswer('quiz2', 1, 'quiz3')">Εύχεται οι θεοί να του χαρίσουν ευτυχία 🙏</button>
+        <button onclick="checkAnswer('quiz2', 2, 'quiz3')">Εύχεται οι θεοί να του φέρουν συμφορές ⚡</button>
+        <p id="quiz2-feedback"></p>
+    </div>
+    
+    <div class="quiz" id="quiz3">
+        <p>3. Τι εννοεί η Ελένη όταν λέει "Η μοίρα καλά τα φέρνει ως τώρα";</p>
+        <button onclick="checkAnswer('quiz3', 1, 'quiz4')">Νομίζει ότι η τύχη ευνοεί τον επικείμενο γάμο τους 👰</button>
+        <button onclick="checkAnswer('quiz3', 2, 'quiz4')">Αναφέρεται στην επιτυχία του σχεδίου απόδρασης 🏃‍♀️</button>
+        <p id="quiz3-feedback"></p>
+    </div>
+    
+    <div class="quiz" id="quiz4">
+        <p>4. Τι εννοεί η Ελένη όταν λέει "Κι αυτά που θέλω ας γίνουν";</p>
+        <button onclick="checkAnswer('quiz4', 1, 'quiz5')">Αναφέρεται στην ταφή του Μενέλαου 🪦</button>
+        <button onclick="checkAnswer('quiz4', 2, 'quiz5')">Εύχεται την επιτυχή έκβαση της απόδρασής τους 🏃‍♀️</button>
+        <p id="quiz4-feedback"></p>
+    </div>
+    
+    <div class="quiz" id="quiz5">
+        <p>5. Τι εννοεί η Ελένη όταν λέει "Τη χάρη που χρωστώ θα σου ξοφλήσω";</p>
+        <button onclick="checkAnswer('quiz5', 1, '')">Αναφέρεται στην άδεια που της έδωσε για την ταφή 🪦</button>
+        <button onclick="checkAnswer('quiz5', 2, '')">Υπονοεί ότι θα "ανταποδώσει" με την απόδρασή της 🏃‍♀️</button>
+        <p id="quiz5-feedback"></p>
+    </div>
+    
+    <h2>Επιλογή Σωστής Απάντησης</h2>
+    <div class="quiz active" id="quiz6">
+        <p>1. Ποια αφηγηματική τεχνική χρησιμοποιείται κυρίως στην αρχή του επεισοδίου;</p>
+        <button onclick="checkAnswer('quiz6', 1, 'quiz7')">α) Διάλογος μεταξύ Ελένης και Μενελάου 🗣️</button>
+        <button onclick="checkAnswer('quiz6', 2, 'quiz7')">β) Μονόλογος της Ελένης 🎭</button>
+        <button onclick="checkAnswer('quiz6', 3, 'quiz7')">γ) Περιγραφή από αφηγητή 📖</button>
+        <button onclick="checkAnswer('quiz6', 4, 'quiz7')">δ) Αφήγηση του Χορού 🎶</button>
+        <p id="quiz6-feedback"></p>
+    </div>
+    
+    <div class="quiz" id="quiz7">
+        <p>2. Γιατί ο Ευριπίδης επέλεξε ο Χορός να αποτελείται από Ελληνίδες αιχμάλωτες στην Αίγυπτο;</p>
+        <button onclick="checkAnswer('quiz7', 1, 'quiz8')">α) Για να δείξει την υποστήριξή τους στην Ελένη 👩‍👩‍👧‍👧</button>
+        <button onclick="checkAnswer('quiz7', 2, 'quiz8')">β) Επειδή δεν υπήρχαν άλλες γυναίκες στην Αίγυπτο 🚫</button>
+        <button onclick="checkAnswer('quiz7', 3, 'quiz8')">γ) Για να προσθέσει ένα κωμικό στοιχείο στο δράμα 😂</button>
+        <button onclick="checkAnswer('quiz7', 4, 'quiz8')">δ) Για να προκαλέσει ένταση μεταξύ των χαρακτήρων ⚔️</button>
+        <p id="quiz7-feedback"></p>
+    </div>
+    
+    <div class="quiz" id="quiz8">
+        <p>3. Ποιο από τα παρακάτω χαρακτηρίζει τον Μενέλαο στο Δ' επεισόδιο;</p>
+        <button onclick="checkAnswer('quiz8', 1, 'quiz9')">α) Παραμένει ρακένδυτος και αδύναμος 🥺</button>
+        <button onclick="checkAnswer('quiz8', 2, 'quiz9')">β) Παρουσιάζεται δυναμικός και προετοιμασμένος για δράση 💪</button>
+        <button onclick="checkAnswer('quiz8', 3, 'quiz9')">γ) Είναι αναποφάσιστος και διστάζει να εκτελέσει το σχέδιο 🤔</button>
+        <button onclick="checkAnswer('quiz8', 4, 'quiz9')">δ) Προσπαθεί να διαπραγματευτεί με τον Θεοκλύμενο για την παραμονή του στην Αίγυπτο 🗣️</button>
+        <p id="quiz8-feedback"></p>
+    </div>
+    
+    <div class="quiz" id="quiz9">
+        <p>4. Ποια από τις παρακάτω σκηνές περιέχει τραγική ειρωνεία;</p>
+        <button onclick="checkAnswer('quiz9', 1, 'quiz10')">α) Ο Θεοκλύμενος πιστεύει ότι ο Μενέλαος είναι νεκρός, ενώ οι θεατές γνωρίζουν ότι είναι ζωντανός 🎭</button>
+        <button onclick="checkAnswer('quiz9', 2, 'quiz10')">β) Η Ελένη μιλάει ανοιχτά στον Θεοκλύμενο για το σχέδιό της 🗣️</button>
+        <button onclick="checkAnswer('quiz9', 3, 'quiz10')">γ) Ο Μενέλαος παραδέχεται την αδυναμία του να δραπετεύσει 🥺</button>
+        <button onclick="checkAnswer('quiz9', 4, 'quiz10')">δ) Ο Χορός προδίδει το μυστικό του ζευγαριού 🎶</button>
+        <p id="quiz9-feedback"></p>
+    </div>
+    
+    <div class="quiz" id="quiz10">
+        <p>5. Ποιο στοιχείο της πλοκής αντανακλά την αντίθεση μεταξύ “είναι” και “φαίνεσθαι”;</p>
+        <button onclick="checkAnswer('quiz10', 1, 'quiz11')">α) Ο Θεοκλύμενος νομίζει ότι η Ελένη θέλει να παντρευτεί, ενώ εκείνη σχεδιάζει την απόδραση 👰</button>
+        <button onclick="checkAnswer('quiz10', 2, 'quiz11')">β) Ο Μενέλαος εμφανίζεται ως ρακένδυτος ναυαγός, ενώ στην πραγματικότητα είναι βασιλιάς 👑</button>
+        <button onclick="checkAnswer('quiz10', 3, 'quiz11')">γ) Οι γυναίκες του Χορού φαίνονται ως απλές υπηρέτριες, αλλά βοηθούν ενεργά την Ελένη 👩‍👩‍👧‍👧</button>
+        <button onclick="checkAnswer('quiz10', 4, 'quiz11')">δ) Όλα τα παραπάνω ✅</button>
+        <p id="quiz10-feedback"></p>
+    </div>
+    
+    <div class="quiz" id="quiz11">
+        <p>6. Πώς αντιλαμβάνονται την τύχη οι χαρακτήρες στο Δ' επεισόδιο;</p>
+        <button onclick="checkAnswer('quiz11', 1, '')">α) Ο Θεοκλύμενος θεωρεί ότι η τύχη του φέρνει την Ελένη ως σύζυγο, ενώ εκείνη εννοεί την επιτυχία της απόδρασης 🎭</button>
+        <button onclick="checkAnswer('quiz11', 2, '')">β) Ο Μενέλαος πιστεύει ότι η τύχη του τον εγκατέλειψε 🥺</button>
+        <button onclick="checkAnswer('quiz11', 3, '')">γ) Η τύχη θεωρείται αδιάφορος παράγοντας στην εξέλιξη της ιστορίας 🤷‍♂️</button>
+        <button onclick="checkAnswer('quiz11', 4, '')">δ) Η τύχη παρουσιάζεται ως θεϊκή δύναμη που βοηθά μόνο τον Θεοκλύμενο 🙏</button>
+        <p id="quiz11-feedback"></p>
+    </div>
+    
+    <h2>Χαρακτηρισμοί Ηρώων</h2>
+    <div class="drag-drop active" id="dragdrop1">
+        <p>Σύρετε και τοποθετήστε κάθε χαρακτηρισμό στον σωστό ήρωα (Ελένη, Μενέλαος, Θεοκλύμενος).</p>
+        <div id="dragdrop1-feedback"></div>
+        <div>
+            <strong>Ήρωες:</strong>
+            <ul>
+                <li>Ελένη</li>
+                <li>Μενέλαος</li>
+                <li>Θεοκλύμενος</li>
+            </ul>
+        </div>
+        <div>
+            <strong>Χαρακτηρισμοί:</strong>
+            <ul>
+                <li>Ευφυής</li>
+                <li>Ετοιμόλογος/η</li>
+                <li>Δυναμικός/ή</li>
+                <li>Πονηρός/ή</li>
+                <li>Πιστός/ή</li>
+                <li>Επιφυλακτικός</li>
+                <li>Πανούργος/α</li>
+                <li>Ευσεβής</li>
+                <li>Καχύποπτος/η</li>
+                <li>Επιβλητικός/ή</li>
+                <li>Αφελής</li>
+                <li>Πειστικός/ή</li>
+                <li>Πεισματάρης/α</li>
+                <li>Φιλόδοξος/η</li>
+                <li>Παρασυρόμενος/η από το πάθος</li>
+            </ul>
+        </div>
+    </div>
+    
+    <h2>Σειρά Προτάσεων</h2>
+    <div class="sequence active" id="sequence1">
+        <p>Βάλε τις προτάσεις στη σωστή σειρά για να δημιουργηθεί μια περίληψη του επεισοδίου. Μπορείς να δεις το <a href="https://youtu.be/OIIuLkh0icc" target="_blank">ΒΙΝΤΕΟ</a> για να σε βοηθήσει.</p>
+        <p>Η άσκηση <a href="https://content.e-me.edu.gr/wp-admin/admin-ajax.php?action=h5p_embed&id=1469796" target="_blank">ΕΔΩ</a>.</p>
+        <div id="sequence1-feedback"></div>
+    </div>
+    
+    <script>
+        // Λίστα με τις σωστές απαντήσεις για κάθε ερώτηση
+        const correctAnswers = {
+            quiz1: 2,
+            quiz2: 2,
+            quiz3: 2,
+            quiz4: 2,
+            quiz5: 2,
+            quiz6: 2,
+            quiz7: 1,
+            quiz8: 2,
+            quiz9: 1,
+            quiz10: 4,
+            quiz11: 1,
+        };
+
+        function checkAnswer(quizId, selectedOption, nextId) {
+            const feedback = document.getElementById(`${quizId}-feedback`);
+            const correctOption = correctAnswers[quizId];
+            if (selectedOption === correctOption) {
+                feedback.innerText = "✅ Σωστή απάντηση!";
+                if (nextId) {
+                    document.getElementById(quizId).classList.remove("active");
+                    document.getElementById(nextId).classList.add("active");
+                }
+            } else {
+                feedback.innerText = "❌ Λάθος απάντηση. Ξαναπροσπάθησε!";
+            }
+        }
+    </script>
+</body>
+</html>
